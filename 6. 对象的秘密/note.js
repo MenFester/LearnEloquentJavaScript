@@ -32,3 +32,41 @@ function outer() {
     inner();
 }
 outer.call({name: "linguanqiang"});
+
+console.log(Object.getPrototypeOf({}) == Object.prototype);
+console.log(Object.prototype);
+console.log({}.toString);
+console.log(Object.getPrototypeOf(Object.prototype));
+
+let protoRabbit = {
+    speak(line) {    // 定义方法的简便方式
+        console.log(`The ${this.type} rabbit says '${line}'`);
+    }
+};
+let killerRabbit = Object.create(protoRabbit);
+killerRabbit.type = "killer";
+killerRabbit.speak("SKREEEEE!");
+
+function makeRabbit(type) {    // 传统方式的构造函数，工厂模式——无法区分对象的类型
+    let rabbit = Object.create(protoRabbit);
+    rabbit.type = type;
+    return rabbit;
+}
+
+function Rabbit(type) {    // 新的构造函数定义方式
+    this.type = type;
+}
+console.log(Rabbit.prototype == Function.prototype);    // false
+console.log(Rabbit.prototype);    // Rabbit {}
+console.log(Object.getPrototypeOf(Rabbit.prototype));    // {}
+
+Rabbit.prototype.speak = function(line) {
+    console.log(`The ${this.type} rabbit says '${line}'`);
+}
+let weirdRabbit = new Rabbit("weird");
+
+console.log(Object.getPrototypeOf(Rabbit));    // [Function]
+console.log(Object.getPrototypeOf(weirdRabbit));    // Rabbit { speak: [Function] }
+console.log(Rabbit.prototype);    // Rabbit { speak: [Function] }
+
+console.log(Object.getPrototypeOf(Rabbit) == Function.prototype);    // true
