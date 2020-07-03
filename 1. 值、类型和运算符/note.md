@@ -20,8 +20,8 @@
   * `/` 除
   * `%` 取余数
 * 特殊数字
-  * `Infinity`
-  * `-Infinity`
+  * `Infinity`：正无穷
+  * `-Infinity`：负无穷
   * `Infinity - 1` 仍是Infinity
   * 不要过分信任基于无穷大的计算
   * `NaN`代表“不是数字”，`0 / 0` 、 `Infinity - Infinity` 或任何其他不产生有意义结果的数字运算时，你都会得到这个结果。对NaN的进一步算术运算会继续产生NaN
