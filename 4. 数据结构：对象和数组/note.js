@@ -35,3 +35,8 @@ console.log(max(4, 1, -9, 2, -2));
 
 let numbers = [5, 1, 7]
 console.log(max(...numbers));    // 展开
+
+function phi([n00, n01, n10, n11]) {    // 为输入的数组参数解构为命名的参数
+    return (n11 * n00 - n10 * n01) /
+    Math.sqrt((n10 + n11) * (n00 + n01) * (n01 + n11) * (n00 + n10));
+}
