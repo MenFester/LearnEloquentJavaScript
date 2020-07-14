@@ -46,6 +46,7 @@ let protoRabbit = {
 let killerRabbit = Object.create(protoRabbit);
 killerRabbit.type = "killer";
 killerRabbit.speak("SKREEEEE!");
+console.log(Object.getPrototypeOf(killerRabbit));    // { speak: [Function: speak] }
 
 function makeRabbit(type) {    // 传统方式的构造函数，工厂模式——无法区分对象的类型
     let rabbit = Object.create(protoRabbit);
@@ -72,3 +73,40 @@ console.log(Object.getPrototypeOf(weirdRabbit));    // Rabbit { speak: [Function
 console.log(Rabbit.prototype);    // Rabbit { speak: [Function] }
 
 console.log(Object.getPrototypeOf(Rabbit) == Function.prototype);    // true
+
+class Rabbit2 {
+    constructor(type) {
+        this.type = type;
+    }
+
+    speak(line) {
+        console.log(`The ${this.type} rabbits is '${line}'`);
+    }
+}
+let killerRabbit2 = new Rabbit2("killer");
+let blackRabbit2 = new Rabbit2("black");
+
+Rabbit2.prototype.teeth = "small";
+console.log(killerRabbit2.teeth);
+killerRabbit2.teeth = "long, sharp, and bloody";    // 屏蔽原型中的同名属性
+console.log(killerRabbit2.teeth);
+
+let ages = new Map();
+ages.set("Boris", 39);
+ages.set("Liang", 22);
+ages.set("Julia", 62);
+
+console.log(`Julia is ${ages.get("julia")}`);
+console.log("Is Jack's age known?", ages.has("Jack"));
+console.log(ages.has("toString"));
+
+console.log(Object.keys({x: 1}));
+
+console.log("for key in object:");
+for (let key in blackRabbit2) {    // 也查找到原型里的属性teeth
+    console.log(key);
+}
+console.log("for key in Object.keys(object):")
+for (let key of Object.keys(blackRabbit2)) {    // 这里用for...of，因为Object.keys返回数组
+    console.log(key);
+}
