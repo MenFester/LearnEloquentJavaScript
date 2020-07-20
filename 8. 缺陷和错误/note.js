@@ -29,3 +29,27 @@ try {
 } catch (error) {
     console.log("Something went wrong: " + error);
 }
+
+class InputError extends Error {}
+function promptDirection2(question) {
+    let result = prompt(question);
+    if (result.toLowerCase() == "left") return "L";
+    if (result.toLowerCase() == "right") return "R";
+    throw new InputError("Invalid direction: " + result);
+}
+
+for (;;) {
+    try {
+        let dir = promptDirection2("Where");
+        console.log("You chose ", dir);
+        break;
+    } catch (e) {
+        if (e instanceof InputError) {
+            console.log("Not a valid direction. Try again.");
+        } else {
+            console.log(e);
+            break;    // 不加break会一直打印e
+            // throw e;    // 继续传递异常
+        }
+    }
+}
