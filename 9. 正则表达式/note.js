@@ -58,3 +58,12 @@ function getDate(string) {
     return new Date(year, month-1, day);
 }
 console.log(getDate("1-30-2003"));
+
+console.log(/\bcat\b/.test("concatenate"));    // false
+console.log(/\bcon\b/.test("concatenate"));    // false
+console.log(/\bcon/.test("concatenate"));    // true
+console.log(/\bcon/.exec("concatenate"));    // [ 'con', index: 0, input: 'concatenate', groups: undefined ]
+
+let animalCount = /\b\d+ (pig|cow|chicken)s?\b/
+console.log(animalCount.test("15 pigs"));    // true
+console.log(animalCount.test("15 pigchickens"));    // false
