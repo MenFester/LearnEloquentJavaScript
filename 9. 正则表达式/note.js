@@ -67,3 +67,32 @@ console.log(/\bcon/.exec("concatenate"));    // [ 'con', index: 0, input: 'conca
 let animalCount = /\b\d+ (pig|cow|chicken)s?\b/
 console.log(animalCount.test("15 pigs"));    // true
 console.log(animalCount.test("15 pigchickens"));    // false
+
+console.log("papa".replace("p", "m"));    // mapa
+console.log("Borobudur".replace(/[ou]/, "a"));    // Barobudur
+console.log("Borobudur".replace(/[ou]/g, "a"));    // Barabadar  
+
+console.log(
+    "Liskov, Barbara\nMacCarthy John\nWadler, Philip"
+    .replace(/(\w+), (\w+)/g, "$2 $1")    // $2 指引用2号匹配组
+);
+
+let s = "the cia and fbi";
+console.log(s.replace(/\b(fbi|cia)\b/g, str => str.toUpperCase()));
+
+let stock = "1 lemon, 2 cabbages, and 101 eggs";
+function minusOne(match, amount, unit) {    // match 指整体匹配， amount指第一匹配组， unit指第二匹配组
+    amount = Number(amount) - 1;
+    if (amount == 1) {
+        unit = unit.slice(0, unit.length - 1);
+    } else if (amount == 0) {
+        amount = "no";
+    }
+    return amount + " " + unit;    // 返回值替换到match匹配的字符串部分中
+}
+console.log(stock.replace(/(\d+) (\w+)/g, minusOne));
+
+let name = "harry";
+let text = "Harry is a suspicious character.";
+let regexp = new RegExp("\\b(" + name + ")\\b", "gi");
+console.log(text.replace(regexp, "_$1_"));
