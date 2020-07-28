@@ -97,3 +97,28 @@ let text = "Harry is a suspicious character.";
 let regexp = new RegExp("\\b(" + name + ")\\b", "gi");
 console.log(text.replace(regexp, "_$1_"));
 
+console.log("    word".search(/\S/));    // 4
+
+let pattern = /y/g
+pattern.lastIndex = 3;
+let match3 = pattern.exec("xyzzy");
+console.log(match3.index);    // 4
+console.log(pattern.lastIndex);    // 5
+
+let global = /abc/g;
+console.log(global.lastIndex);    // 0
+console.log(global.exec("xyz abc"));    //  [ 'abc', index: 4, input: 'xyz abc', groups: undefined ]
+console.log(global.lastIndex);    // 7
+let sticky = /abc/y;
+console.log(sticky.lastIndex);    // 0
+console.log(sticky.exec("xyz abc"));    // null
+console.log(sticky.lastIndex);    // 0
+console.log(sticky.exec("abc xyz"));    // [ 'abc', index: 0, input: 'abc xyz', groups: undefined ]
+console.log(sticky.lastIndex);     // 3
+
+let input = "A string with 3 numbers in it ... 42 and 88.";
+let number = /\b\d+\b/g;
+let match4;
+while (match4 = number.exec(input)) {
+    console.log("Found", match4[0], "at", match4.index);
+}
