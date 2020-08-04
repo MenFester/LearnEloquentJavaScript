@@ -56,10 +56,18 @@
 * 传递给Promise构造函数的函数接收第二个参数（reject）可以用来拒绝新的promise
 * 通过调用then和catch创建的promise值链，可以看作异步值或失败值移动的管道。由于这些链式通过注册处理程序创建的，因此每个链都有一个与之关联的成功处理程序或拒绝处理程序（或两者都有）。与结果类型（成功或失败）不匹配的处理程序将被忽略。只有那些匹配的处理程序才会被调用，并且它们的结果决定了随后得出的值的种类（当它返回非promise值时成功，当它抛出异常时拒绝）和结果，而结果就是promise返回上述两种情况中的一种
 * 当promise的拒绝未被处理时，JavaScript环境也可以检测到这种情况并将其报告为错误
+* then的第二个参数和catch的区别：
+  * 第一，reject是用来抛出异常的，catch是用来处理异常的
+  * 第二：reject是Promise的方法，而then和catch是Promise实例的方法（Promise.prototype.then 和 Promise.prototype.catch）
+  * 主要区别就是，如果在then的第一个函数里抛出了异常，后面的catch能捕获到，而then的第二个函数捕获不到
+  * catch只是一个语法糖而己，还是通过then来处理的
+  * 建议总是使用catch方法，而不使用then方法的第二个参数
 
-## 11.6 构建网络很困难
+## 11.6 构建网络很困难 
 
 ## 11.7 promise集合
+
+* Promise.all(iterable)方法返回一个Promise实例，此实例在iterable参数内所有的promise “完成（resolved）”或参数中不包含promise 时回调完成（resolve）；如果参数中promise有一个失败（rejected），此实例回调失败（reject），失败的原因是第一个失败promise的结果
 
 ## 11.8 网络泛洪
 
