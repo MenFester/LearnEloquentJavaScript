@@ -32,3 +32,27 @@ new Promise((_, reject) => reject(new Error("Fail")))
 })
 .then(value => console.log("Handler 2", value))    // Handler 2 nothing
 .catch(reason => console.log("Caught failure " + reason));    // Caught failure Error: Fail again.
+
+const doSomethingAsync = () => {
+    return new Promise((resolve => {
+        setTimeout(() => resolve("I did something"), 6000);
+    }))
+};
+const doSomething = async () => {
+    console.log(await doSomethingAsync());
+    return "ok";
+};
+console.log("Before");
+doSomething();
+doSomething().then(value => console.log(value));
+console.log("After");
+
+function* powers(n) {
+    for (let current = n; ; current*=n) {
+        yield current;
+    }
+}
+for (let power of powers(3)) {
+    if (power > 50) break;
+    console.log(power);
+}
