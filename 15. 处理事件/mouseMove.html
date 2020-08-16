@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <p>Drag the bar to change its width;</p>
+        <div style="background: orange; width: 60px; height: 20px;"></div>
+        <script>
+            let lastX;
+            let bar = document.querySelector("div");
+            bar.addEventListener("mousedown", event => {
+                if (event.button == 0) {
+                    lastX = event.clientX;
+                    window.addEventListener("mousemove", moved);
+                    event.preventDefault();
+                }
+            });
+            function moved(event) {
+                if (event.buttons == 0) {
+                    window.removeEventListener("mousemove", moved);
+                } else {
+                    let dist = event.clientX - lastX;
+                    let newWidth = Math.max(10, bar.offsetWidth + dist);
+                    bar.style.width = newWidth + "px";
+                    lastX = event.clientX;
+                }
+            }
+        </script>
+    </body>
+</html>
