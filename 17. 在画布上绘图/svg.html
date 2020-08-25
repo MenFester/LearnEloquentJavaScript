@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <P>Normal HTML here</P>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <circle r="50" cx="50" cy="50" fill="red" />
+            <rect x="120" y="5" width="90" height="90" stroke="blue" fill="none" />
+        </svg>
+        <button id="button1">变色</button>
+
+        <script>
+            let button = document.getElementById("button1");
+
+            button.addEventListener("mousedown", (event) => {
+                circle = document.querySelector("circle");
+                circle.setAttribute("fill", "cyan");
+            });
+            button.addEventListener("mouseup", (event) => {
+                circle = document.querySelector("circle");
+                circle.setAttribute("fill", "red");
+            });
+        </script>
+        
+    </body>
+</html>
