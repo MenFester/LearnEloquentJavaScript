@@ -18,10 +18,18 @@
         <canvas></canvas>
         <script>
             let cx = document.querySelector("canvas").getContext("2d");
-            cx.strokeStyle = "blue";
-            cx.strokeRect(5, 5, 50, 50);
-            cx.lineWidth = 5;
-            cx.strokeRect(135, 5, 50, 50);6
+            cx.beginPath();
+            for (let y = 10; y < 100; y += 10) {
+                cx.moveTo(10, y);
+                cx.lineTo(90, y);
+            }
+            cx.stroke();
+            cx.moveTo(150, 10);
+            cx.lineTo(110, 70);
+            cx.lineTo(190, 70);
+            cx.lineTo(220, 30);
+            cx.closePath();
+            cx.fill();
         </script>
     </body>
 </html>

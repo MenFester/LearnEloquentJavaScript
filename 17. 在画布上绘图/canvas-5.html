@@ -15,13 +15,27 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <canvas></canvas>
+        <canvas width="250" height="250"></canvas>
         <script>
+            const results = [
+                {name: "Satisfied", count: 1043, color: "lightblue"},
+                {name: "Neutral", count: 563, color: "lightgreen"},
+                {name: "Unsatisfied", count: 510, color: "pink"},
+                {name: "No comment", count: 175, color: "silver"},
+            ];
+
             let cx = document.querySelector("canvas").getContext("2d");
-            cx.strokeStyle = "blue";
-            cx.strokeRect(5, 5, 50, 50);
-            cx.lineWidth = 5;
-            cx.strokeRect(135, 5, 50, 50);6
+            let total = results.reduce((sum, {count}) => sum + count, 0);
+            let currentAngle = -0.5 * Math.PI;    // -1/2π，从顶部开始
+            for (let result of results) {
+                let sliceAngle = (result.count / total) * 2 * Math.PI;
+                cx.beginPath();
+                cx.arc(100, 100, 100, currentAngle, currentAngle + sliceAngle);
+                currentAngle += sliceAngle;
+                cx.lineTo(100, 100);
+                cx.fillStyle = result.color;
+                cx.fill();
+            }
         </script>
     </body>
 </html>

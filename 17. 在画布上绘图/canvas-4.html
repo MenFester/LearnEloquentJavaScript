@@ -18,10 +18,20 @@
         <canvas></canvas>
         <script>
             let cx = document.querySelector("canvas").getContext("2d");
-            cx.strokeStyle = "blue";
-            cx.strokeRect(5, 5, 50, 50);
-            cx.lineWidth = 5;
-            cx.strokeRect(135, 5, 50, 50);6
+            cx.beginPath();
+            cx.moveTo(10, 90);
+            cx.quadraticCurveTo(60, 10, 90, 90);    // control=(60, 10) goal=(90, 90)
+            cx.lineTo(60, 10);
+            cx.closePath();
+            cx.stroke();
+
+            cx.beginPath();
+            cx.moveTo(110, 90);
+            cx.bezierCurveTo(110, 10, 190, 10, 150, 90);    // control1=(110, 10) control2=(190, 10) goal=(150, 90)
+            cx.lineTo(190, 10);
+            cx.lineTo(110, 10);
+            cx.closePath();
+            cx.stroke();
         </script>
     </body>
 </html>
