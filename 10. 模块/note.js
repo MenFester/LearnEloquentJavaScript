@@ -28,7 +28,7 @@ function require(name) {
         let module = { exports: {} };
         require.cache[name] = module;
         let wrapper = Function("require, exports, module", code);
-        wrapper(require, module.exports, module);
+        wrapper(require, module.exports, module);    // 将code执行后的exports对象赋给module.exports绑定，将module对象赋给module绑定，通常二选一
     }
-    return require.cache[name].exports;
+    return require.cache[name].exports;    // 最终导入的都在require.cache中 ，因为是个对象，所以 const {xx} = require("XXX")
 }
