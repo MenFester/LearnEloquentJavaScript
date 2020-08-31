@@ -43,6 +43,33 @@
 
 ## 20.6 HTTP模块
 
+* http模块，提供运行HTTP服务器和发出HTTP请求的功能
+* http模块的createServer函数创建一个HTTP服务器
+* request和response绑定，代表出入和传出数据的对象。
+  * request包含有关请求的信息，例如url属性包含请求的URL
+  * response:
+    * response.writeHead，写出响应标头，需要给它提供状态码和包含标头值的对象
+    * response.write，发送实际响应主体
+    * response.end，表示响应结束
+* 服务器对象（例如名叫server）的listen的调用，导致服务器开始等待端口上的连接。监听一直等待，脚本监听事件时，Node到达脚本末尾时将不会自动退出
+* http模块的request函数，充当HTTP客户端。第一个参数配置请求，第二个参数是响应进入时应该调用的函数
+  * 与在服务器中的response对象一样，http.request调用返回的对象允许使用write方法将数据流式传输到请求中
+* https模块中有一个类似的request函数，可用于向https:URL发出请求
+
 ## 20.7 流
 
+* 两个可写流实例：
+  * 服务器可以写入的response对象
+  * 请求返回的request对象
+* 可写流是Node中广泛使用的概念，这样的对象有一个write方法，可以传递一个字符串或一个buffer对象来将一些东西写入流。它们的end方法关闭流，这两种方法可以附加参数给出回调函数
+* 可以使用fs模块中的createWriteStream函数创建指向文件的可写流。然后可以在结果对象上使用write方法一次一个地写入文件，而不是像writeFile一样一次写入全部
+* 可读流：
+  * 传递给HTTP服务器回调函数的request绑定
+  * 传递给HTTP客户端回调函数的response绑定
+  * 从流中读取是使用事件处理程序而不是方法完成的
+  * 可读流具有“data”和“end”事件
+* 在Node中发出事件的对象有一个名为on的方法，类似于浏览器中的addEventListener方法。给它传入一个事件名称和函数，它会注册在给定事件发生时要调用的函数
+
 ## 20.8 文件服务器
+
+* 
