@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./bower_install_vue/bower_components/vue/dist/vue.js"></script>
+    <script src="../vue/vue.js"></script>
 </head>
 <body>
     <div id="app">
-        <input type="button" value="显示/不显示" @click="show">
-        <p v-if="showP">这是一段可以控制显示/不显示的文字</p>
+        <input type="button" value="显示/隐藏" @click="show">
+        <p v-if="showP">这里显示/隐藏一段文文字</p>
     </div>
     <script>
         let m = {
@@ -23,7 +23,7 @@
                     this.showP = !this.showP;
                 }
             }
-        })
+        });
     </script>
 </body>
 </html>
