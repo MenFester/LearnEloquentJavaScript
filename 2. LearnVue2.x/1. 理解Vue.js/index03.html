@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./bower_install_vue/bower_components/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="显示/不显示" @click="show">
+        <p v-if="showP">这是一段可以控制显示/不显示的文字</p>
+    </div>
+    <script>
+        let m = {
+            showP: false
+        }
+        let app = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+                show() {
+                    this.showP = !this.showP;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

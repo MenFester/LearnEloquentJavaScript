@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- View -->
+    <div id="app">
+        <input type="button" value="按钮1" v-on:click="show">
+        <input type="button" value="按钮2" @click="show">
+        <h3>{{ word }}</h3>
+    </div>
+
+    <script>
+        // Moudule
+        let m = {
+            word: "Hello, World. I'm Vue."
+        };
+
+        // View Module
+        let vm = new Vue({
+            el: '#app',    // 挂载点
+            data: m,    // 数据
+            // 方法
+            methods:{
+                show() {
+                    console.log("Hello, I'm here.");
+                    this.word = "林冠强修改了数据";
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
