@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li>{{ arr[0] }}</li>
+            <li>{{ arr[1] }}</li>
+            <li>{{ arr[2] }}</li>
+            <li>{{ arr[3] }}</li>
+
+        </ul>
+        <ul>
+            <li v-for="val in arr">{{ val }}</li>
+        </ul>
+        <ul>
+            <li v-for="(val, index) in arr">{{ index + 1 }} => {{ val }}</li>
+        </ul>
+        <ul>
+            <li v-for="(val, key) in json">{{ key }} : {{ val }}</li>
+        </ul>
+        <ul>
+            <li v-for="(val, key, index) in json">{{ key }} : {{ val }} , index = {{ index }}</li>
+        </ul>
+    </div>
+    <script>
+        let m = {
+            arr: ["Sunday", "Monday", "Tuesday", "Wednesday"],
+            json: {
+                firstCity: "Bei jing",
+                secondCity: "Ji nan",
+                thirdCity: "Shang hai",
+                fourthCity: "Hang zhou",
+                fivthCity: "Sulaweixi"
+            }
+        };
+        let app = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>
