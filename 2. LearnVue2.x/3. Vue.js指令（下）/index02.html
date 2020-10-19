@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+    <style>
+        .page {
+            list-style: none;
+        }
+
+        .page>li {
+            float: left;
+            padding: 5px;
+            margin-left: 10px;
+            border: 1px solid #dddddd;
+            background: #eeeeee;
+        }
+
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul class="page">
+            <li @click="prev">上一页</li>
+            <li v-for="n in pageCounter">
+                <a href="#" :class="n == activeNum ? 'active' : '' ">{{ n }}</a>
+            </li>
+            <li @click="next">下一页</li>
+        </ul>
+    </div>
+    <script>
+        let m = {
+            pageCounter: 10,
+            activeNum: 5
+        };
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+                prev() {
+                    if (this.activeNum > 1) {
+                        this.activeNum--;
+                    }
+                },
+                next() {
+                    if (this.activeNum < 10) {
+                        this.activeNum++;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

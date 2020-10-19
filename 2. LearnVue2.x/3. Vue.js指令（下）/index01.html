@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div @click="func2">
+        <div @click.stop="func($event)">
+            <input type="button" value="按钮1">
+            <input type="button" value="按钮2">
+            <input type="button" value="按钮3">
+        </div>
+        </div>
+    </div>
+    <script>
+        let m = {
+
+        };
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+                func(event) {
+                    console.log(event, event.target);
+                },
+                func2() {
+                    console.log("func2");
+                }
+            }
+        });
+    </script>
+</body>
+</html>
