@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="++" @click="addCount">
+        <input type="button" value="--" @click="minCount">
+        {{ count }}
+        <br />
+        <h1 v-linguanqiang="count">如果count不大于1，看不见</h1>
+    </div>
+    <script>
+        let m = {
+            count: 0
+        };
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+                addCount() {
+                    this.count++;
+                },
+                minCount() {
+                    this.count--;
+                }
+            },
+            directives: {
+                linguanqiang: {
+                    bind: function(el, bindings) {
+                        console.log(el, bindings);
+                        if (bindings.value > 1) {
+                            el.setAttribute('style', 'display: block');
+                        } else {
+                            el.setAttribute('style', 'display: none');
+                        }
+                    },
+                    update: function(el, bindings) {
+                        if (bindings.value > 1) {
+                            el.setAttribute('style', 'display: block');
+                        } else {
+                            el.setAttribute('style', 'display: none');
+                        }
+                    },
+                    unbind: function(el, bindings) {
+                        
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

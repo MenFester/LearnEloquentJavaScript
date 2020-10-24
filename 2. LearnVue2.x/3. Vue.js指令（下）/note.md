@@ -14,10 +14,20 @@
 
 ## 动手实验——分页
 
-* 
-
 ## v-model指令
+
+* v-model.lazy，只有在回车或者onblur时改动
+* v-model.number，只能输入数据
+* v-moddl.trim，去除前后空格
 
 ## 自定义指令
 
+* 传入Vue()对象中的directives
+  * bind：钩子，绑定时执行一次
+  * update
+  * unbind
+
 ## 计算属性
+
+* 把函数当做变量使用
+* 传入Vue()对象中的computed
