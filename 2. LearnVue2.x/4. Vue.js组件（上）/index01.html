@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <h4>{{ price }}</h4>
+        <h4>{{ price | myCurrency('￥') }}</h4>
+        <h4>{{ words }}</h4>
+        <h4>{{ words | changWord(true) }}</h4>
+        <h4>{{ words | changWord(false) }}</h4>
+    </div>
+    <script>
+        let m = {
+            price: 3780,
+            words: 'abCdEfgHiJK'
+        };
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+
+            },
+            filters: {
+                myCurrency(input, arg) {
+                    let p = input / 100.0;
+                    return arg + ' ' + p;
+                },
+                changWord(input, arg) {
+                    if (arg) {
+                        return input.toUpperCase();
+                    } else {
+                        return input.toLowerCase();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
