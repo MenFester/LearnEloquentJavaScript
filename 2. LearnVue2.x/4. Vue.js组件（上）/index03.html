@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <script>
+        Vue.component('first-child', {
+            template: `
+                <h2>first-child: {{ word }}</h2>
+            `,
+            data: function() {
+                return {
+                    word: 'Hello, World.'
+                };
+            }
+        });
+        Vue.component('second-child', {
+            template: `
+                <div>
+                    <h3> second-child: </h3>
+                    <div v-for="item in array"> {{ item }} </div>
+                </div>
+            `,
+            data: function() {
+                return {
+                    array: ['abc', 'def', 'gh']
+                };
+            }
+        });
+        Vue.component('parent', {
+            template: `
+                <div>
+                    <first-child></first-child>
+                    <second-child></second-child>
+                </div>
+            `
+        });
+        let m = {
+
+        };
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+                
+            }
+        });
+    </script>
+</body>
+</html>
