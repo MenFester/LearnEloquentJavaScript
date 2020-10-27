@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="显示转换" @click="toBeOrNotToBe">
+        <div v-if="isShow">
+            <component-base></component-base>
+        </div>
+    </div>
+    <script>
+        Vue.component('component-base', {
+            template: `
+                <div>
+                    <input type="button" value="++" @click="addCount">
+                    <h4>hello, {{ count }}</h4>
+                </div>
+            `,
+            data: function(){
+                return {
+                    count: 0
+                };
+            },
+            methods: {
+                addCount: function() {
+                    this.count ++;
+                }
+            },
+            beforeCreate() {
+                console.log("before being created");
+            },
+            created() {
+                console.log("created");
+            },
+            beforeMount() {
+                console.log("before being mounted");
+            },
+            mounted() {
+                console.log("mounted");
+            },
+            beforeUpdate() {
+                console.log("before being updated");
+            },
+            updated() {
+                console.log("updated");
+            },
+            beforeDestroy() {
+                console.log("before being destroyed");
+            },
+            destroyed() {
+                console.log("destroyed");
+            },
+        });
+        let m = {
+            isShow: true
+        };
+
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+                toBeOrNotToBe: function() {
+                    this.isShow = !this.isShow;
+                }
+            },
+        });
+
+
+    </script>
+</body>
+</html>

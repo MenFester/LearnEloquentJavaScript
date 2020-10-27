@@ -21,4 +21,10 @@
 
 ## 组件生命周期
 
+* 四个阶段，每个阶段都有前有后，可以对应事件处理函数：
+  * beforeCreate，created
+  * beforeMounte，mounted
+  * beforeUpdate，updated
+  * beforeDestroy，destroyed
+
 ## 监听属性
