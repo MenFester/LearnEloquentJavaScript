@@ -28,3 +28,5 @@
   * beforeDestroy，destroyed
 
 ## 监听属性
+
+* 知道属性的变化而且可以控制它，使用watch，通过function对应需要watch的属性

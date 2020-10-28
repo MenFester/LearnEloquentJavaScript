@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <script>
+        Vue.component('child', {
+            template: `
+                <div>
+                    <p :id="p1">{{str1}}</p>
+                </div>
+            `,
+            props: ['p1', 'str1']
+        });
+
+        Vue.component('parent', {
+            template: `
+                <div>
+                    <child :p1="parentP1" :str1="parentStr1"></child>
+                    <child p1="parentP1" str1="parentStr1"></child>
+                </div>
+            `,
+            data: function() {
+                return {
+                    parentP1: 'abc',
+                    parentStr1: 'efg'
+                }
+            }
+        });
+
+        let m = {
+
+        };
+        
+        let vm = new Vue({
+            el: '#app',
+            data: m,
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>
