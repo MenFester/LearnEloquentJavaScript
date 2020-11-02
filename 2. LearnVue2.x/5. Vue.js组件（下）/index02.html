@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../Component/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-parent></my-parent>
+    </div>
+    <script>
+        Vue.component('my-child', {
+            template: `
+                <input type="button" value="点我发送信息" @click="sendMsg" >
+            `,
+            methods: {
+                sendMsg() {
+                    this.$emit('msgToParent', "Hello, I am Vue", "ok?");
+                }
+            }
+        });
+
+        Vue.component('my-parent', {
+            template: `
+                <div>
+                    <my-child @msgToParent="getMsg"></my-child>
+                    <br />
+                    <h4>这是收到的信息1 ：{{ myMsg1 }}</h4>
+                    <h4>这是收到的信息2 ：{{ myMsg2 }}</h4>
+                </div>
+            `,
+            data: function() {
+                return {
+                    myMsg1: '',
+                    myMsg2: '',
+                };
+            },
+            methods: {
+                getMsg(msg1, msg2) {
+                    console.log(msg1, msg2);
+                    this.myMsg1 = msg1;
+                    this.myMsg2 = msg2;
+                }
+            },
+        });
+
+        new Vue({el: '#app'});
+    </script>
+</body>
+</html>
